@@ -1,0 +1,17 @@
+version: '3'
+
+service:
+  api:
+    container_name: share_reader_api
+
+  websocket:
+    container_name: share_reader_socket
+    
+  mysql:
+    image: mysql:5.7
+    env_file: ./mysql/mysql.env
+    environment:
+      - TZ=Asia/Tokyo
+    ports:
+      - 3306:3306
+    restart: always
