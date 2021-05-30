@@ -1,17 +1,34 @@
 version: '3'
 
-service:
+services:
   api:
     container_name: share_reader_api
+    build: ./api
+    networks: 
+      - share_reader_net
 
   websocket:
     container_name: share_reader_socket
+    build: ./socket
+    networks: 
+      - share_reader_net
+    ports: 
+      - '4000:4000'
+    command: mix phx.server
+    environment:
+      - MIX_ENV=dev
+      - PORT=4000
     
   mysql:
-    image: mysql:5.7
+    image: mysql
+    container_name: share_reader_mysql
     env_file: ./mysql/mysql.env
     environment:
       - TZ=Asia/Tokyo
     ports:
       - 3306:3306
     restart: always
+    networks: 
+      - share_reader_net
+
+networks: share_reader_api
