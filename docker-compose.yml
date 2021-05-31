@@ -4,14 +4,17 @@ services:
   api:
     container_name: share_reader_api
     build: ./api
+    volumes: 
+      - ./api:/usr/src/api
     tty: true
 
   websocket:
     container_name: share_reader_socket
     build: ./socket
+    volumes: 
+      - ./socket:/usr/src/socket
     ports: 
       - '4000:4000'
-    command: mix phx.server
     environment:
       - MIX_ENV=dev
       - PORT=4000
