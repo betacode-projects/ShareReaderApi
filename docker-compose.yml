@@ -4,20 +4,18 @@ services:
   api:
     container_name: share_reader_api
     build: ./api
-    networks: 
-      - share_reader_net
+    tty: true
 
   websocket:
     container_name: share_reader_socket
     build: ./socket
-    networks: 
-      - share_reader_net
     ports: 
       - '4000:4000'
     command: mix phx.server
     environment:
       - MIX_ENV=dev
       - PORT=4000
+    tty: true
     
   mysql:
     image: mysql
@@ -28,7 +26,9 @@ services:
     ports:
       - 3306:3306
     restart: always
-    networks: 
-      - share_reader_net
+    volumes: 
+      - datastore:/var/lib/mysql
 
-networks: share_reader_api
+volumes: 
+  datastore:
+    driver: local

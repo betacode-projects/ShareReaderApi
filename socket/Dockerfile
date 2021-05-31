@@ -1,4 +1,3 @@
-FROM elixir:1.10.3
 FROM elixir:1.12.0
 
 ENV NODE_VERSION 14.x
@@ -11,5 +10,7 @@ RUN npm install npm@latest -g
 RUN mix local.hex --force && \
   mix archive.install hex phx_new 1.5.9 --force && \
   mix local.rebar --force
+
+COPY ./ usr/socket
 
 WORKDIR /app
