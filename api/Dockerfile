@@ -2,4 +2,6 @@ FROM node:14
 
 RUN npm install
 
-WORKDIR /usr/api
+WORKDIR /usr/src/api
+
+COPY . .

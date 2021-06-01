@@ -11,6 +11,6 @@ RUN mix local.hex --force && \
   mix archive.install hex phx_new 1.5.9 --force && \
   mix local.rebar --force
 
-COPY ./ usr/socket
+WORKDIR /usr/src/socket
 
-WORKDIR /app
+COPY . .
