@@ -17,6 +17,7 @@ services:
     build: ./socket
     volumes: 
       - ./socket:/usr/src/socket
+      - /usr/src/socket/deps
     ports: 
       - '4000:4000'
     command: mix phx.server
