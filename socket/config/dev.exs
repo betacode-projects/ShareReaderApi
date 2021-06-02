@@ -4,8 +4,8 @@ use Mix.Config
 config :socket, Socket.Repo,
   username: "root",
   password: "root",
-  database: "socket_dev",
-  hostname: "localhost",
+  database: "share_reader",
+  hostname: "mysql",
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
 
