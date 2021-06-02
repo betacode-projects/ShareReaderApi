@@ -14,3 +14,5 @@ RUN mix local.hex --force && \
 WORKDIR /usr/src/socket
 
 COPY . .
+
+RUN mix deps.get

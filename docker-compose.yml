@@ -6,6 +6,9 @@ services:
     build: ./api
     volumes: 
       - ./api:/usr/src/api
+    ports:
+      - '3000:3000'
+    command: npm run dev
     tty: true
 
   websocket:
@@ -15,6 +18,7 @@ services:
       - ./socket:/usr/src/socket
     ports: 
       - '4000:4000'
+    command: mix phx.server
     environment:
       - MIX_ENV=dev
       - PORT=4000
