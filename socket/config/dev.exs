@@ -3,7 +3,7 @@ use Mix.Config
 # Configure your database
 config :socket, Socket.Repo,
   username: "root",
-  password: "",
+  password: "root",
   database: "socket_dev",
   hostname: "localhost",
   show_sensitive_data_on_connection_error: true,
