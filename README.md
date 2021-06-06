@@ -1,5 +1,5 @@
 # ShareReader-Project
-- プロジェクト: https://github.com/betacode-projects/ShareReader-Project/projects/1
+- プロジェクト: https://github.com/betacode-projects/ShareReader-Project/issues/14
 
 ## Usage
 ### ./mysql/mysql.envの作成
