@@ -1,5 +1,5 @@
 # ShareReader-Project
-U-22コンテスト作品
+- プロジェクト: https://github.com/betacode-projects/ShareReader-Project/projects/1
 
 ## Usage
 ### ./mysql/mysql.envの作成
