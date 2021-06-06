@@ -1,0 +1,43 @@
+version: '3'
+
+services:
+  api:
+    container_name: share_reader_api
+    build: ./api
+    volumes: 
+      - ./api:/usr/src/api
+      - /usr/src/api/node_modules
+    ports:
+      - '3000:3000'
+    command: npm run dev
+    tty: true
+
+  websocket:
+    container_name: share_reader_socket
+    build: ./socket
+    volumes: 
+      - ./socket:/usr/src/socket
+      - /usr/src/socket/deps
+    ports: 
+      - '4000:4000'
+    command: mix phx.server
+    environment:
+      - MIX_ENV=dev
+      - PORT=4000
+    tty: true
+    
+  mysql:
+    image: mysql
+    container_name: share_reader_mysql
+    env_file: ./mysql/mysql.env
+    environment:
+      - TZ=Asia/Tokyo
+    ports:
+      - 3306:3306
+    restart: always
+    volumes: 
+      - datastore:/var/lib/mysql
+
+volumes: 
+  datastore:
+    driver: local
