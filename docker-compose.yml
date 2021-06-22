@@ -11,6 +11,8 @@ services:
       - '3000:3000'
     command: npm run dev
     tty: true
+    environment: 
+      - GOOGLE_APPLICATION_CREDENTIALS=
 
   websocket:
     container_name: share_reader_socket
@@ -18,12 +20,14 @@ services:
     volumes: 
       - ./socket:/usr/src/socket
       - /usr/src/socket/deps
+      - ${GOOGLE_APPLICATION_CREDENTIALS}:/key.json:ro      
     ports: 
       - '4000:4000'
     command: mix phx.server
     environment:
       - MIX_ENV=dev
       - PORT=4000
+      - GOOGLE_APPLICATION_CREDENTIALS: ./authentication/share-reader-api-dev.json
     tty: true
     
   mysql:

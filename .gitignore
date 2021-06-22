@@ -2,3 +2,5 @@
 .elixir_ls
 *.env
 mysql/mysql.env
+
+/authentication/
