@@ -4,16 +4,16 @@ services:
   api:
     container_name: share_reader_api
     build: ./api
+    environment: 
+      - GOOGLE_APPLICATION_CREDENTIALS=/key.json
     volumes: 
       - ./api:/usr/src/api
       - /usr/src/api/node_modules
-      - ${GOOGLE_APPLICATION_CREDENTIALS}:/key.json:ro
+      - ./authentication/share-reader-api-dev.json:/key.json
     ports:
       - '3000:3000'
     command: npm run dev
     tty: true
-    environment: 
-      - GOOGLE_APPLICATION_CREDENTIALS: ./authentication/share-reader-api-dev.json
 
   websocket:
     container_name: share_reader_socket
