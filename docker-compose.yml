@@ -4,6 +4,8 @@ services:
   api:
     container_name: share_reader_api
     build: ./api
+    env_file:
+      - ./.env
     environment: 
       - GOOGLE_APPLICATION_CREDENTIALS=/key.json
     volumes: 

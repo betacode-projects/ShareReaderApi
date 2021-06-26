@@ -1,8 +1,6 @@
 import express from 'express'
-import { user } from '../models/user'
 import { initModels } from '../models/init-models'
 import DBConfig from '../database/DBConfig'
-import { Sequelize } from 'sequelize'
 
 const isMatchedSenderAuth = (req: express.Request, res: express.Response, next: () => void): void => {
   const public_token = req.headers.authorization 
@@ -21,9 +19,10 @@ const isMatchedSenderAuth = (req: express.Request, res: express.Response, next: 
   const models = initModels(DBConfig)
   models.user.findOne({
     where: {
-      user_public_token: public_token
+      user_public_token: public_token.substring(7)
     }
   }).then((record) => {
+    console.log(record)
     if(record?.user_mode_id != 1){
       res.status(401).send(JSON.stringify({
         "status": "error",
@@ -34,6 +33,7 @@ const isMatchedSenderAuth = (req: express.Request, res: express.Response, next: 
       }))
       return
     }
+    return next()
   }).catch(() => {
     res.status(401).send(JSON.stringify({
       "status": "error",
@@ -44,8 +44,6 @@ const isMatchedSenderAuth = (req: express.Request, res: express.Response, next: 
     }))
     return
   })
-
-  return next()
 }
 
 export default isMatchedSenderAuth
