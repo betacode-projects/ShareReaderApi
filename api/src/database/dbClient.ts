@@ -1,7 +1,12 @@
 import * as Sequelize from 'sequelize'
-import mysql from 'mysql2'
+import DBConfig from './DBConfig'
 
-interface resultType {
-  status: number,
-  
+const DBClient = (): void => {
+  DBConfig.authenticate().then(() => {
+    console.log('Connection has been established successfully.')
+  }).catch((err) => {
+    console.error('Unable to connect to the database:', err)
+  })
 }
+
+export default DBClient
