@@ -1,13 +1,11 @@
 import express from 'express'
 import { Storage } from '@google-cloud/storage'
 import multer from 'multer'
-import { user } from '../../models/user'
 
 const fileController = (req: express.Request, res: express.Response): void => {
-  const public_token: string | undefined = req.headers.authorization
   const bucketName = 'share-objects'
   const filePath = ''
-  const destFileName = 'storage/'
+  const destFileName = 'storage/' + req.headers.authorization
   const storage = new Storage()
 
   async function uploadFile(): Promise<void> {

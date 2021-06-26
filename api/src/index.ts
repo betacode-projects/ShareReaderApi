@@ -1,5 +1,4 @@
 import express from 'express'
-import passport from 'passport'
 import { router } from './routes/router'
 
 const app: express.Express = express()
