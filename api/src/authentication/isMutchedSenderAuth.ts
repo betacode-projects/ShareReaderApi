@@ -1,6 +1,8 @@
 import express from 'express'
 import { user } from '../models/user'
-import DBClient from '../database/DBClient'
+import { initModels } from '../models/init-models'
+import DBConfig from '../database/DBConfig'
+import { Sequelize } from 'sequelize'
 
 const isMatchedSenderAuth = (req: express.Request, res: express.Response, next: () => void): void => {
   const public_token = req.headers.authorization 
@@ -15,8 +17,9 @@ const isMatchedSenderAuth = (req: express.Request, res: express.Response, next: 
     }))
     return
   }
-
-  user.findOne({
+  
+  const models = initModels(DBConfig)
+  models.user.findOne({
     where: {
       user_public_token: public_token
     }
