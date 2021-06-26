@@ -16,6 +16,7 @@
     "@types/eslint": "^7.2.10",
     "@types/express": "^4.17.12",
     "@types/express-session": "^1.17.3",
+    "@types/google-cloud__storage": "^2.3.1",
     "@types/multer": "^1.4.6",
     "@types/mysql2": "github:types/mysql2",
     "@types/passport": "^1.0.6",

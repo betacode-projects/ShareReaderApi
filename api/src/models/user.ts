@@ -1,11 +1,11 @@
-import * as Sequelize from 'sequelize';
-import { DataTypes, Model, Optional } from 'sequelize';
-import type { account, accountId } from './account';
-import type { download, downloadId } from './download';
-import type { file_info, file_infoId } from './file_info';
-import type { flag, flagId } from './flag';
-import type { login_sessions, login_sessionsId } from './login_sessions';
-import type { user_mode, user_modeId } from './user_mode';
+import * as Sequelize from 'sequelize'
+import { DataTypes, Model, Optional } from 'sequelize'
+import type { account, accountId } from './account'
+import type { download, downloadId } from './download'
+import type { file_info, file_infoId } from './file_info'
+import type { flag, flagId } from './flag'
+import type { login_sessions, login_sessionsId } from './login_sessions'
+import type { user_mode, user_modeId } from './user_mode'
 
 export interface userAttributes {
   user_id: number;
@@ -18,9 +18,9 @@ export interface userAttributes {
   user_registered_date?: Date;
 }
 
-export type userPk = "user_id" | "flag_id" | "user_mode_id";
-export type userId = user[userPk];
-export type userCreationAttributes = Optional<userAttributes, userPk>;
+export type userPk = "user_id" | "flag_id" | "user_mode_id"
+export type userId = user[userPk]
+export type userCreationAttributes = Optional<userAttributes, userPk>
 
 export class user extends Model<userAttributes, userCreationAttributes> implements userAttributes {
   user_id!: number;
@@ -105,82 +105,82 @@ export class user extends Model<userAttributes, userCreationAttributes> implemen
 
   static initModel(sequelize: Sequelize.Sequelize): typeof user {
     user.init({
-    user_id: {
-      autoIncrement: true,
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      primaryKey: true
-    },
-    flag_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      primaryKey: true,
-      references: {
-        model: 'flag',
-        key: 'flag_id'
+      user_id: {
+        autoIncrement: true,
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        primaryKey: true
+      },
+      flag_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        primaryKey: true,
+        references: {
+          model: 'flag',
+          key: 'flag_id'
+        }
+      },
+      user_public_token: {
+        type: DataTypes.STRING(64),
+        allowNull: false
+      },
+      user_private_token: {
+        type: DataTypes.STRING(64),
+        allowNull: false
+      },
+      user_agent: {
+        type: DataTypes.TEXT,
+        allowNull: false
+      },
+      user_ip: {
+        type: DataTypes.TEXT,
+        allowNull: false
+      },
+      user_mode_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        primaryKey: true,
+        references: {
+          model: 'user_mode',
+          key: 'user_mode_id'
+        }
+      },
+      user_registered_date: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        defaultValue: Sequelize.Sequelize.literal('CURRENT_TIMESTAMP')
       }
-    },
-    user_public_token: {
-      type: DataTypes.STRING(64),
-      allowNull: false
-    },
-    user_private_token: {
-      type: DataTypes.STRING(64),
-      allowNull: false
-    },
-    user_agent: {
-      type: DataTypes.TEXT,
-      allowNull: false
-    },
-    user_ip: {
-      type: DataTypes.TEXT,
-      allowNull: false
-    },
-    user_mode_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      primaryKey: true,
-      references: {
-        model: 'user_mode',
-        key: 'user_mode_id'
-      }
-    },
-    user_registered_date: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: Sequelize.Sequelize.literal('CURRENT_TIMESTAMP')
-    }
-  }, {
-    sequelize,
-    tableName: 'user',
-    timestamps: false,
-    indexes: [
-      {
-        name: "PRIMARY",
-        unique: true,
-        using: "BTREE",
-        fields: [
-          { name: "user_id" },
-          { name: "flag_id" },
-          { name: "user_mode_id" },
-        ]
-      },
-      {
-        name: "flag_id",
-        using: "BTREE",
-        fields: [
-          { name: "flag_id" },
-        ]
-      },
-      {
-        name: "user_mode_id",
-        using: "BTREE",
-        fields: [
-          { name: "user_mode_id" },
-        ]
-      },
-    ]
-  });
-  return user;
+    }, {
+      sequelize,
+      tableName: 'user',
+      timestamps: false,
+      indexes: [
+        {
+          name: "PRIMARY",
+          unique: true,
+          using: "BTREE",
+          fields: [
+            { name: "user_id" },
+            { name: "flag_id" },
+            { name: "user_mode_id" },
+          ]
+        },
+        {
+          name: "flag_id",
+          using: "BTREE",
+          fields: [
+            { name: "flag_id" },
+          ]
+        },
+        {
+          name: "user_mode_id",
+          using: "BTREE",
+          fields: [
+            { name: "user_mode_id" },
+          ]
+        },
+      ]
+    })
+    return user
   }
 }

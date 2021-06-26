@@ -1,12 +1,54 @@
 import express from 'express'
 import { Storage } from '@google-cloud/storage'
+import multer from 'multer'
+import { user } from '../../models/user'
 
 const fileController = (req: express.Request, res: express.Response): void => {
-  console.log(req.headers.authorization)
+  const public_token: string | undefined = req.headers.authorization
   const bucketName = 'share-objects'
   const filePath = ''
   const destFileName = 'storage/'
   const storage = new Storage()
+
+  
+  if(typeof public_token === 'undefined'){
+    res.status(401).send(JSON.stringify({
+      "status": "error",
+      "message": "Unauthorized",
+      "data": {
+        "detail": "authorization undefined"
+      }
+    }))
+    return
+  }
+  
+  const findByPublicToken = (): void => {
+    user.findOne({
+      where: {
+        user_public_token: public_token
+      }
+    }).then((record) => {
+      if(record?.user_mode_id != 1){
+        res.status(401).send(JSON.stringify({
+          "status": "error",
+          "message": "Unauthorized",
+          "data": {
+            "detail": "Different user modes"
+          }
+        }))
+        return
+      }
+    }).catch(() => {
+      res.status(401).send(JSON.stringify({
+        "status": "error",
+        "messsage": "Unauthorized",
+        "data": {
+          "detail": "No matching token"
+        }
+      }))
+      return
+    })
+  }
 
   async function uploadFile(): Promise<void> {
     await storage.bucket(bucketName).upload(filePath, {
@@ -29,7 +71,6 @@ const fileController = (req: express.Request, res: express.Response): void => {
       "data": {}
     }))
   })
-
   return
 }
 
