@@ -22,7 +22,6 @@ const isMatchedSenderAuth = (req: express.Request, res: express.Response, next: 
       user_public_token: public_token.substring(7)
     }
   }).then((record) => {
-    console.log(record)
     if(record?.user_mode_id != 1){
       res.status(401).send(JSON.stringify({
         "status": "error",
@@ -34,12 +33,16 @@ const isMatchedSenderAuth = (req: express.Request, res: express.Response, next: 
       return
     }
     return next()
-  }).catch(() => {
+  }).catch((error) => {
+    console.log('エラー：' + error)
     res.status(401).send(JSON.stringify({
       "status": "error",
       "messsage": "Unauthorized",
       "data": {
-        "detail": "No matching token"
+        "detail": [
+          "No matching token",
+          error
+        ]
       }
     }))
     return

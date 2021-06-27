@@ -22,10 +22,10 @@ const fileController = (req: express.Request, res: express.Response): void => {
       "message": "Upload complete!",
       "data": {}
     }))
-  }).catch(() => {
+  }).catch((error) => {
     res.status(400).send(JSON.stringify({
       "status": "error",
-      "message": console.error,
+      "message": error,
       "data": {}
     }))
   })
