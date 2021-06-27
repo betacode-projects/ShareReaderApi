@@ -17,5 +17,5 @@ app.use((req, res, next) => {
 })
 
 app.listen(3000, () => {
-  console.log('nya app listening on port 3000!')
+  console.log('share-reader-api app listening on port 3000!')
 })

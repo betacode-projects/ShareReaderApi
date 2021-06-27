@@ -1,4 +1,5 @@
 import express from 'express'
+import Utility from '../utils/utility'
 import { initModels } from '../models/init-models'
 import DBConfig from '../database/DBConfig'
 
@@ -19,7 +20,7 @@ const isMatchedSenderAuth = (req: express.Request, res: express.Response, next: 
   const models = initModels(DBConfig)
   models.user.findOne({
     where: {
-      user_public_token: public_token.substring(7)
+      user_public_token: Utility.getToken(public_token)
     }
   }).then((record) => {
     if(record?.user_mode_id != 1){
