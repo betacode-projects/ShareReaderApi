@@ -5,7 +5,7 @@ import fileType from 'file-type'
 import fs from 'fs'
 import Utility from '../../utils/utility'
 import { initModels } from '../../models/init-models'
-import DBConfig from '../../database/DBConfig'
+import DBConfig from '../../database/dbConfig'
 
 const fileController = (req: express.Request, res: express.Response): void => {
   let filePath = ''
