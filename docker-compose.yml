@@ -4,9 +4,14 @@ services:
   api:
     container_name: share_reader_api
     build: ./api
+    env_file:
+      - ./.env
+    environment: 
+      - GOOGLE_APPLICATION_CREDENTIALS=/key.json
     volumes: 
       - ./api:/usr/src/api
       - /usr/src/api/node_modules
+      - ./authentication/share-reader-api-dev.json:/key.json
     ports:
       - '3000:3000'
     command: npm run dev
@@ -17,7 +22,7 @@ services:
     build: ./socket
     volumes: 
       - ./socket:/usr/src/socket
-      - /usr/src/socket/deps
+      - /usr/src/socket/deps  
     ports: 
       - '4000:4000'
     command: mix phx.server
