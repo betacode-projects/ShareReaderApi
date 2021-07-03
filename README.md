@@ -13,6 +13,18 @@ MYSQL_PASSWORD=（パスワード）
 MYSQL_DATABASE=(データーベース名)
 ```
 
+### ./envの作成
+./env.sampleをコピーして作成
+
+```
+DATABASE=(データベース名)
+PORT=(データベースポート番号)
+HOST=(ホスト名)
+USER=(ユーザー名)
+PASSWORD=(パスワード)
+```
+
+### ルートディレクトリ直下にauthenticationフォルダを作成してgoogleドライブからjsonファイルを入れる
 ### コンテナ起動
 ```
 make up
