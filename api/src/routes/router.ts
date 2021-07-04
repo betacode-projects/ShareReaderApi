@@ -1,6 +1,6 @@
 import express from 'express'
 import multer from 'multer'
-import isMatchedSenderAuth from '../authentication/isMutchedSenderAuth'
+import isMatchedSenderAuth from '../middleware/isMutchedSenderAuth'
 import uploadController from '../controllers/file/uploadController'
 import downloadController from '../controllers/downloadController'
 import isMatchedReceiverAuth from '../middleware/isMutchedReceiverAuth'

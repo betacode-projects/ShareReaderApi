@@ -28,7 +28,7 @@ const isMatchedReceiverAuth = (req: express.Request, res: express.Response, next
         "status": "error",
         "message": "Unauthorized",
         "data": {
-          "detail": "Different user modes. not sender"
+          "detail": "Different user modes. not receiver"
         }
       }))
       return
