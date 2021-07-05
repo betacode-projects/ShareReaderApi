@@ -8,6 +8,9 @@ const downloadController = (req: express.Request, res: express.Response): void =
     res.status(401).send(paramsResult.response)
     return
   }
+
+  //ファイルダウンロード
+  
   
   return
 }

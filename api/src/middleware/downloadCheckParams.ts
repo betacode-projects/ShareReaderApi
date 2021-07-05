@@ -1,7 +1,6 @@
 import qs from 'qs'
 import DBConfig from '../database/dbConfig'
 import { initModels } from '../models/init-models'
-import Utility from '../utils/utility'
 
 const downloadCheckParams = (senderToken: string | qs.ParsedQs | string[] | qs.ParsedQs[] | undefined, receiverToken: string | qs.ParsedQs | string[] | qs.ParsedQs[] | undefined): {result: boolean, response: string} => {
   if(typeof senderToken === 'undefined'){
