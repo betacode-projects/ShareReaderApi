@@ -24,15 +24,45 @@ const downloadCheckParams = (senderToken: string | qs.ParsedQs | string[] | qs.P
     }
   }
 
-  /*const models = initModels(DBConfig)
+  const models = initModels(DBConfig)
+  let resultData: {result: boolean, response: string}| null = null
   models.user.findOne({
     where: {
-      user_private_token: 
+      user_private_token: receiverToken
     }
-  })*/
-
-
-
+  }).then((record) => {
+    if(record?.user_mode_id != 2){
+      resultData = {
+        result: false,
+        response: JSON.stringify({
+          "status": "error",
+          "message": "Unauthorized",
+          "data": {
+            "detail": "Different user modes. not receiver"
+          }
+        })
+      }
+    }
+  }).catch((error) => {
+    console.log('エラー：' + error)
+    resultData = {
+      result: false,
+      response: JSON.stringify({
+        "status": "error",
+        "messsage": "Unauthorized",
+        "data": {
+          "detail": [
+            "No matching token",
+            error
+          ]
+        }
+      })
+    }
+  })
+  
+  if(resultData !== null){
+    return resultData
+  }
 
   return {
     result: true,
