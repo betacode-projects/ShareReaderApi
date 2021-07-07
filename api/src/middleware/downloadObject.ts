@@ -1,10 +1,17 @@
 import { Storage } from '@google-cloud/storage'
 
-const downloadObject = () => {
+const downloadObject = (senderToken: string): {result: boolean, response: string} => {
   const storage = new Storage()
-  const bucketName = ''
-  const fileName = ''
-  const destFileName = ''  
+  const bucketName = 'share-objects'
+  const fileName = senderToken
+  const destFileName = ''
+  let resultData: {result: boolean, response: string} = {
+    result: false,
+    response: JSON.stringify({
+      "status": "error",
+      "message": "server error"
+    })
+  }  
 
   async function downloadFile() {
     const options = {
@@ -16,7 +23,19 @@ const downloadObject = () => {
     console.log('`gs://${bucketName}/${fileName} downloaded to ${destFileName}.`')
   }
 
-  downloadFile().catch(console.error)
+  downloadFile().catch(
+    (error) => {
+      resultData = {
+        result: false,
+        response: JSON.stringify({
+          "status": "error",
+          "message": error
+        })
+      }
+    }
+  )
+
+  return resultData
 }
 
 export default downloadObject
