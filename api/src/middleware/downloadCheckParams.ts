@@ -3,7 +3,7 @@ import qs from 'qs'
 import DBConfig from '../database/dbConfig'
 import { initModels } from '../models/init-models'
 
-const downloadCheckParams = (req: express.Request, res: express.Response, next: () => void) => {
+const downloadCheckParams = (req: express.Request, res: express.Response, next: () => void): void => {
   const senderToken = req.query.sender
   const receiverToken = req.query.receiver
   
@@ -29,9 +29,7 @@ const downloadCheckParams = (req: express.Request, res: express.Response, next: 
       user_private_token: receiverToken
     }
   }).then((record) => {
-    if(record?.user_mode_id != 2){
-      next()
-    }
+    next()
   }).catch((error) => {
     console.log('エラー：' + error)
     res.status(401).send(JSON.stringify({
