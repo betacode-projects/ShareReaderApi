@@ -1,15 +1,9 @@
+import co from 'co'
 import { initModels } from "../models/init-models"
 import DBConfig from '../database/dbConfig'
-import { result } from "lodash"
 
-const getObjectInfo = (publicToken: string): {result: boolean, response: string} => {
-  let resultData = {
-    result: false,
-    response: JSON.stringify({
-      "status": "error",
-      "message": "server error"
-    })
-  }
+const getObjectInfo = (publicToken: string | qs.ParsedQs | string[] | qs.ParsedQs[] | undefined): {result: boolean, response: string} => {
+  let resultData: {result: boolean, response: string} | null = null
 
   const models = initModels(DBConfig)
   models.user.findAll({
@@ -23,7 +17,12 @@ const getObjectInfo = (publicToken: string): {result: boolean, response: string}
     }]
   }).then((record) => {
     console.log(record)
+    resultData = {
+      result: true,
+      response: JSON.stringify(record)
+    }
   }).catch((error) => {
+    console.log('SQL エラー: ' + error)
     resultData = {
       result: false,
       response: JSON.stringify({
@@ -35,8 +34,15 @@ const getObjectInfo = (publicToken: string): {result: boolean, response: string}
       })
     }
   })
-  
-  return resultData
+  if(resultData !== null){
+    return resultData
+  }
+  return {
+    result: false,
+    response: JSON.stringify({
+      "status": "error"
+    })
+  }
 }
 
 export default getObjectInfo
