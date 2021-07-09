@@ -1,17 +1,20 @@
+import express from 'express'
 import { Storage } from '@google-cloud/storage'
 
-const downloadObject = (senderToken: string): {result: boolean, response: string} => {
+const downloadObject = (req: express.Request, res: express.Response): void => {
+  const fileInfo = res.locals.fileInfo
   const storage = new Storage()
   const bucketName = 'share-objects'
-  const fileName = senderToken
-  const destFileName = ''
-  let resultData: {result: boolean, response: string} = {
-    result: false,
-    response: JSON.stringify({
+  const destFileName =  fileInfo['file_infos.file_name']
+
+  if(typeof req.query.sender !== 'string'){
+    res.status(401).send(JSON.stringify({
       "status": "error",
-      "message": "server error"
-    })
-  }  
+      "message": "not found params"
+    }))
+    return
+  }
+  const fileName = req.query.sender
 
   async function downloadFile() {
     const options = {
@@ -25,17 +28,14 @@ const downloadObject = (senderToken: string): {result: boolean, response: string
 
   downloadFile().catch(
     (error) => {
-      resultData = {
-        result: false,
-        response: JSON.stringify({
-          "status": "error",
-          "message": error
-        })
-      }
+      res.status(401).send(JSON.stringify({
+        "status": "error",
+        "message": "Can not download file"
+      }))
     }
   )
 
-  return resultData
+  return
 }
 
 export default downloadObject

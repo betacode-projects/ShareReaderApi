@@ -1,5 +1,4 @@
 import express from 'express'
-import qs from 'qs'
 import DBConfig from '../database/dbConfig'
 import { initModels } from '../models/init-models'
 
