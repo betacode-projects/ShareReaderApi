@@ -28,6 +28,7 @@ const downloadCheckParams = (req: express.Request, res: express.Response, next: 
       user_private_token: receiverToken
     }
   }).then((record) => {
+    res.locals.receiverUserInfo = record
     next()
   }).catch((error) => {
     console.log('エラー：' + error)
