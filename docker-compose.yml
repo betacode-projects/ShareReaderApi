@@ -5,7 +5,7 @@ services:
     container_name: share_reader_api
     build:
       context: ./api
-      dockerfile: Dockerfile-dev
+      dockerfile: Dockerfile.dev
     env_file:
       - ./.env
     environment: 

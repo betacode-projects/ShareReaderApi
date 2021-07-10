@@ -1,6 +1,9 @@
 up: 
 	docker-compose up -d
 
+up_api:
+	docker-compose up -d api && docker-compose up -d mysql
+
 stop:
 	docker-compose stop
 
