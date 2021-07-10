@@ -3,6 +3,8 @@ import { initModels } from "../models/init-models"
 import DBConfig from '../database/dbConfig'
 
 const getObjectInfo = (req: express.Request, res: express.Response, next: () => void): void => {
+  console.log('-------------into getObject middleware!!-------------')
+
   const models = initModels(DBConfig)
   models.user.findAll({
     where: {

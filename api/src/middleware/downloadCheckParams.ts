@@ -3,6 +3,7 @@ import DBConfig from '../database/dbConfig'
 import { initModels } from '../models/init-models'
 
 const downloadCheckParams = (req: express.Request, res: express.Response, next: () => void): void => {
+  console.log('-------------into downloadCheckParams middleware!!-------------')
   const senderToken = req.query.sender
   const receiverToken = req.query.receiver
   
