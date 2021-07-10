@@ -1,7 +1,7 @@
 import express from 'express'
 import Utility from '../utils/utility'
 import { initModels } from '../models/init-models'
-import DBConfig from '../database/DBConfig'
+import DBConfig from '../database/dbConfig'
 
 const isMatchedSenderAuth = (req: express.Request, res: express.Response, next: () => void): void => {
   const public_token = req.headers.authorization 

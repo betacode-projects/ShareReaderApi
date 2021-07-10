@@ -3,7 +3,9 @@ version: '3'
 services:
   api:
     container_name: share_reader_api
-    build: ./api
+    build:
+      context: ./api
+      dockerfile: Dockerfile-dev
     env_file:
       - ./.env
     environment: 
