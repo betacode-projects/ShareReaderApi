@@ -10,3 +10,13 @@ export enum FlagID {
     LogicalDeletion,
     BookMark
 }
+
+export enum ApiStatus {
+    Success = 'success',
+    Error = 'error'
+}
+
+export enum TokenMode {
+    Public = 'user_public_token',
+    Private = 'user_private_token'
+}
