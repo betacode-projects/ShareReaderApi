@@ -11,7 +11,7 @@ import deleteSenderToken from '../controllers/user/deleteSenderToken'
 export const router: express.Router = express.Router()
 const path = '/v1/api'
 
-router.post(path + '/file', isMatchedSenderAuth, multer({dest: 'storage/'}).single('file'), uploadController)
+router.post(path + '/file', multer({dest: 'storage/'}).single('file'), uploadController)
 router.get(path + '/file', downloadCheckParams, getObjectInfo, downloadObject, downloadResponse)
 router.post(path + '/file', isMatchedSenderAuth, multer({dest: 'storage/'}).single('file'), uploadController)
 router.post(path + '/token', generateToken)
