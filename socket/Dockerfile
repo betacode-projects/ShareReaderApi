@@ -3,6 +3,7 @@ FROM elixir:1.12.0
 ENV NODE_VERSION 14.x
 
 RUN curl -sL https://deb.nodesource.com/setup_${NODE_VERSION} | bash \
+  && apt-get install -y inotify-tools \
   && apt-get install -y nodejs
 
 RUN npm install npm@latest -g
