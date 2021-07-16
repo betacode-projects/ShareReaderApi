@@ -6,10 +6,6 @@ RUN mix local.hex --force && \
 
 WORKDIR /usr/src/socket
 
-COPY mix.* .
-
-RUN mix deps.get
-
 COPY . .
 
 RUN mix deps.get
