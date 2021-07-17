@@ -21,7 +21,9 @@ services:
 
   websocket:
     container_name: share_reader_socket
-    build: ./socket
+    build: 
+      context: ./socket
+      dockerfile: Dockerfile.dev
     volumes: 
       - ./socket:/usr/src/socket
       - /usr/src/socket/deps  
