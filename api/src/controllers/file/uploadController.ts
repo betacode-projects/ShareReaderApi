@@ -6,7 +6,7 @@ import fs from 'fs'
 import { initModels } from '../../models/init-models'
 import DBConfig from '../../database/dbConfig'
 import {TokenManager} from '../../modules/TokenManager'
-import { UserMode, FlagID, TokenMode } from '../../modules/flags'
+import { UserMode } from '../../modules/flags'
 
 const fileController = (req: express.Request, res: express.Response): void => {
   const filePath = req.file?.path || ''
@@ -16,10 +16,13 @@ const fileController = (req: express.Request, res: express.Response): void => {
   const fileName = req.file?.originalname || ''
   const fileFormat = req.file?.mimetype || ''
   let fileExtension = ''
+  let destFileName = 'storage/'
+
   const fileHash = hasha.fromFileSync(filePath, {algorithm: 'sha256'})
 
   const token = new TokenManager()
   token.insertUserToken(UserMode.Sender, req.ip, req.headers['user-agent']).then(() => {
+    destFileName += token.private
     //拡張子取得
     fileType.fromFile(filePath).then((result) => {
       if(typeof result?.ext !== 'undefined'){
@@ -32,7 +35,7 @@ const fileController = (req: express.Request, res: express.Response): void => {
       const models = initModels(DBConfig)
       models.user.findOne({
         where: {
-          user_public_token: token
+          user_public_token: token.public
         }
       }).then((record) => {
         if(record !== null){
