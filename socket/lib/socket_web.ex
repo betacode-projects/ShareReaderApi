@@ -22,7 +22,6 @@ defmodule SocketWeb do
       use Phoenix.Controller, namespace: SocketWeb
 
       import Plug.Conn
-      import SocketWeb.Gettext
       alias SocketWeb.Router.Helpers, as: Routes
     end
   end
@@ -54,20 +53,15 @@ defmodule SocketWeb do
   def channel do
     quote do
       use Phoenix.Channel
-      import SocketWeb.Gettext
     end
   end
 
   defp view_helpers do
     quote do
-      # Use all HTML functionality (forms, tags, etc)
-      use Phoenix.HTML
-
       # Import basic rendering functionality (render, render_layout, etc)
       import Phoenix.View
 
       import SocketWeb.ErrorHelpers
-      import SocketWeb.Gettext
       alias SocketWeb.Router.Helpers, as: Routes
     end
   end

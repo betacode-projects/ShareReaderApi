@@ -7,14 +7,12 @@ defmodule SocketWeb.Endpoint do
   @session_options [
     store: :cookie,
     key: "_socket_key",
-    signing_salt: "+xxC0fq5"
+    signing_salt: "mCqcYRP6"
   ]
 
   socket "/socket", SocketWeb.UserSocket,
     websocket: true,
     longpoll: false
-
-  socket "/live", Phoenix.LiveView.Socket, websocket: [connect_info: [session: @session_options]]
 
   # Serve at "/" the static files from "priv/static" directory.
   #
@@ -29,15 +27,8 @@ defmodule SocketWeb.Endpoint do
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
   if code_reloading? do
-    socket "/phoenix/live_reload/socket", Phoenix.LiveReloader.Socket
-    plug Phoenix.LiveReloader
     plug Phoenix.CodeReloader
-    plug Phoenix.Ecto.CheckRepoStatus, otp_app: :socket
   end
-
-  plug Phoenix.LiveDashboard.RequestLogger,
-    param_key: "request_logger",
-    cookie_key: "request_logger"
 
   plug Plug.RequestId
   plug Plug.Telemetry, event_prefix: [:phoenix, :endpoint]
