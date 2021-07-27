@@ -2,7 +2,7 @@ defmodule Socket.RoomChannel do
   use Phoenix.Channel
 
   def join("room:" <> _public_room_token, _params, socket) do
-    {:ok, %{status: "connection!!"}, socket}
+    {:ok, %{status: "connection　[ " <> _public_room_token <> " ] !!"}, socket}
     {:error, %{status: "unauthorized"}}
   end
 
