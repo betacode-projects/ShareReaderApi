@@ -22,7 +22,7 @@ const fileController = (req: express.Request, res: express.Response): void => {
 
   const token = new TokenManager()
   token.insertUserToken(UserMode.Sender, req.ip, req.headers['user-agent']).then(() => {
-    destFileName += token.private
+    destFileName += token.public
     //拡張子取得
     fileType.fromFile(filePath).then((result) => {
       if(typeof result?.ext !== 'undefined'){
