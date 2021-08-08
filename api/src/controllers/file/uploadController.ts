@@ -68,7 +68,12 @@ const fileController = (req: express.Request, res: express.Response): void => {
         res.status(200).send(JSON.stringify({
           "satus": "success",
           "message": "Upload complete!",
-          "data": {result}
+          "data": {
+            "token": {
+              "public": token.public,
+              "private": token.private
+            }
+          }
         }))
         fs.unlink(filePath, () => {
           console.log(req.file?.filename + ' deleted')
