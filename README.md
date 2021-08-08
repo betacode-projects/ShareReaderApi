@@ -14,7 +14,8 @@ MYSQL_DATABASE=(データーベース名)
 ```
 
 ### ./envの作成
-./env.sampleをコピーして作成
+./env.sampleをコピーして作成  
+[サンプル](./doc/sample.md)
 
 ```
 DATABASE=(データベース名)

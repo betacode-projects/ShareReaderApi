@@ -2,6 +2,9 @@
 - `make up`  
   `docker-compose up -d` イメージ取得からコンテナ起動まで
 
+- `make up_api`
+  apiとmysqlのコンテナの起動
+
 - `make stop`  
   `docker-compose stop` コンテナの停止
 
