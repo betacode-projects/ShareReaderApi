@@ -8,4 +8,4 @@ WORKDIR /usr/src/socket
 
 COPY . .
 
-RUN mix deps.get
+RUN rm -rf _build && mix deps.get
