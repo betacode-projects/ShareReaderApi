@@ -48,6 +48,16 @@ services:
       - datastore:/var/lib/mysql
       - ./mysql/database:/docker-entrypoint-initdb.d
 
+  cron:
+    container_name: share_reader_cron
+    build:
+      context: ./cron
+      dockerfile: Dockerfile
+    volumes:
+      - ./cron:/usr/src/cron
+    tty: true
+    command: pip install -r requirements.txt
+
 volumes: 
   datastore:
     driver: local
