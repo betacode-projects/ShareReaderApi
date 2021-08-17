@@ -20,6 +20,9 @@
 
 - `make restart_socket`  
   websocketコンテナの再起動
+
+- `make restart_cron`
+  cronコンテナの再起動
   
 - `make down`  
   `docker-compose down` コンテナ・ネットワークの停止＆削除  
