@@ -5,8 +5,8 @@ defmodule SocketWeb.RoomChannel do
     {:ok, %{status: "connection　[ " <> _public_room_token <> " ] !!"}, socket}
   end
 
-  def hundle_in("downloaded_alert", %{"body" => body}, socket) do
-    broadcast!(socket, "downloaded_alert", %{body: body})
+  def hundle_in("download_alert", %{"body" => body}, socket) do
+    broadcast!(socket, "download_alert", %{body: body})
     {:noreply, socket}
   end
 end
