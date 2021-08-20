@@ -4,7 +4,9 @@ import { router } from './routes/router'
 
 const app: express.Express = express()
 
-app.use(cors())
+app.use(cors({
+  exposedHeaders: 'content-disposition'
+}))
 app.use('/public', express.static(__dirname + '/public'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
