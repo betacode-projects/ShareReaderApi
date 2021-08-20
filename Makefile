@@ -19,6 +19,9 @@ restart_socket:
 restart_db:
 	docker-compose restart mysql
 
+restart_cron:
+	docker-compose restart cron
+
 down:
 	docker-compose down
 

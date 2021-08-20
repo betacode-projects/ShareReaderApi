@@ -29,7 +29,7 @@ services:
       - /usr/src/socket/deps  
     ports: 
       - '4000:4000'
-    command: mix phx.server
+    command: sh -c 'rm -rf _build; mix phx.server'
     environment:
       - MIX_ENV=dev
       - PORT=4000
@@ -47,16 +47,6 @@ services:
     volumes: 
       - datastore:/var/lib/mysql
       - ./mysql/database:/docker-entrypoint-initdb.d
-
-  cron:
-    container_name: share_reader_cron
-    build:
-      context: ./cron
-      dockerfile: Dockerfile
-    volumes:
-      - ./cron:/usr/src/cron
-    tty: true
-    command: pip install -r requirements.txt
 
 volumes: 
   datastore:
