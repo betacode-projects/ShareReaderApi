@@ -37,5 +37,6 @@ USER nobody:nobody
 COPY --from=build --chown=nobody:nobody /app/_build/prod/rel/socket ./
 
 ENV HOME=/app
+ENV SECRET_KEY_BASE=GMgwkLdL++cslw03iyu1ci7xxndGFY66ZDxCNjQ/+7awJxdWGTzVGwiCy1jo6joP
 
 CMD ["bin/socket", "start"]
