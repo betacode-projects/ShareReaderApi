@@ -15,6 +15,6 @@ app.use((req, res, next) => {
   res.status(404).send('Sorry can not find that!')
 })
 
-app.listen(3000, () => {
-  console.log('share-reader-api app listening on port 3000!')
+app.listen(8080, () => {
+  console.log('share-reader-api app listening on port ', 8080)
 })
