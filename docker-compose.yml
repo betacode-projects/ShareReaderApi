@@ -3,10 +3,17 @@ version: '3'
 services:
   api:
     container_name: share_reader_api
-    build: ./api
+    build:
+      context: ./api
+      dockerfile: Dockerfile.dev
+    env_file:
+      - ./.env
+    environment: 
+      - GOOGLE_APPLICATION_CREDENTIALS=/key.json
     volumes: 
       - ./api:/usr/src/api
       - /usr/src/api/node_modules
+      - ./authentication/share-reader-api-dev.json:/key.json
     ports:
       - '3000:3000'
     command: npm run dev
@@ -14,13 +21,15 @@ services:
 
   websocket:
     container_name: share_reader_socket
-    build: ./socket
+    build: 
+      context: ./socket
+      dockerfile: Dockerfile.dev
     volumes: 
       - ./socket:/usr/src/socket
-      - /usr/src/socket/deps
+      - /usr/src/socket/deps  
     ports: 
       - '4000:4000'
-    command: mix phx.server
+    command: sh -c 'rm -rf _build; mix phx.server'
     environment:
       - MIX_ENV=dev
       - PORT=4000
@@ -37,6 +46,7 @@ services:
     restart: always
     volumes: 
       - datastore:/var/lib/mysql
+      - ./mysql/database:/docker-entrypoint-initdb.d
 
 volumes: 
   datastore:

@@ -1,6 +1,9 @@
 up: 
 	docker-compose up -d
 
+up_api:
+	docker-compose up -d api && docker-compose up -d mysql
+
 stop:
 	docker-compose stop
 
@@ -15,6 +18,9 @@ restart_socket:
 
 restart_db:
 	docker-compose restart mysql
+
+restart_cron:
+	docker-compose restart cron
 
 down:
 	docker-compose down

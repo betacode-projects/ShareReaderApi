@@ -2,6 +2,9 @@
 - `make up`  
   `docker-compose up -d` イメージ取得からコンテナ起動まで
 
+- `make up_api`
+  apiとmysqlのコンテナの起動
+
 - `make stop`  
   `docker-compose stop` コンテナの停止
 
@@ -17,6 +20,9 @@
 
 - `make restart_socket`  
   websocketコンテナの再起動
+
+- `make restart_cron`
+  cronコンテナの再起動
   
 - `make down`  
   `docker-compose down` コンテナ・ネットワークの停止＆削除  

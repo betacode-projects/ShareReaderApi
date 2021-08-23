@@ -1,11 +1,4 @@
-FROM elixir:1.12.0
-
-ENV NODE_VERSION 14.x
-
-RUN curl -sL https://deb.nodesource.com/setup_${NODE_VERSION} | bash \
-  && apt-get install -y nodejs
-
-RUN npm install npm@latest -g
+FROM elixir:1.12-alpine
 
 RUN mix local.hex --force && \
   mix archive.install hex phx_new 1.5.9 --force && \
@@ -13,10 +6,6 @@ RUN mix local.hex --force && \
 
 WORKDIR /usr/src/socket
 
-COPY mix.* .
-
-RUN mix deps.get
-
 COPY . .
 
-RUN mix deps.get
+RUN rm -rf _build && mix deps.get
