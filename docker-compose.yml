@@ -15,7 +15,7 @@ services:
       - /usr/src/api/node_modules
       - ./authentication/share-reader-api-dev.json:/key.json
     ports:
-      - '3000:3000'
+      - '3000:8080'
     command: npm run dev
     tty: true
 

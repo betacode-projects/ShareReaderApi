@@ -3,7 +3,6 @@ import cors from 'cors'
 import { router } from './routes/router'
 
 const app: express.Express = express()
-const port = process.env.PORT || 8080
 
 app.use(cors({
   exposedHeaders: 'content-disposition'
@@ -17,5 +16,5 @@ app.use((req, res, next) => {
 })
 
 app.listen(8080, () => {
-  console.log('share-reader-api app listening on port ', port)
+  console.log('share-reader-api app listening on port ', 8080)
 })
