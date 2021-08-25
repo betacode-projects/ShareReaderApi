@@ -9,7 +9,7 @@ use Mix.Config
 
 # Configures the endpoint
 config :socket, SocketWeb.Endpoint,
-  url: [host: "localhost"],
+  url: [host: "share-reader-socket-4bifvghjoq-an.a.run.app"],
   secret_key_base: "Ep9IV6NnPqz2QMK6koCXqTAc/V2M8Qu4qhbhRd+7bOWVJ22Gf+Ajifd9Ki8ZaDil",
   render_errors: [view: SocketWeb.ErrorView, accepts: ~w(json), layout: false],
   pubsub_server: Socket.PubSub,
