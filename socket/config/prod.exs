@@ -11,7 +11,7 @@ use Mix.Config
 # before starting your production server.
 config :socket, SocketWeb.Endpoint,
   url: [host: "share-reader-socket-4bifvghjoq-an.a.run.app", port: 80],
-  check_origin: ["share-reader-socket-4bifvghjoq-an.a.run.app", "https://share-reader.dt.r.appspot.com"]
+  check_origin: false # ["share-reader-socket-4bifvghjoq-an.a.run.app", "https://share-reader.dt.r.appspot.com"]
 
 # Do not print debug messages in production
 config :logger, level: :info
