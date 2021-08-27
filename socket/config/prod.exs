@@ -10,7 +10,7 @@ use Mix.Config
 # which you should run after static files are built and
 # before starting your production server.
 config :socket, SocketWeb.Endpoint,
-  url: [host: "share-reader-socket-4bifvghjoq-an.a.run.app", port: 8080],
+  url: [host: "share-reader-socket-dot-share-reader.dt.r.appspot.com", port: 8080],
   check_origin: false # ["https://share-reader.dt.r.appspot.com"]
 
 # Do not print debug messages in production
