@@ -4,6 +4,9 @@ up:
 up_api:
 	docker-compose up -d api && docker-compose up -d mysql
 
+up_socket:
+	docker-compose up -d websocket
+
 stop:
 	docker-compose stop
 

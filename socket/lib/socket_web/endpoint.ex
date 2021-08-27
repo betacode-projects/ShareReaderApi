@@ -7,7 +7,8 @@ defmodule SocketWeb.Endpoint do
   @session_options [
     store: :cookie,
     key: "_socket_key",
-    signing_salt: "mCqcYRP6"
+    signing_salt: "mCqcYRP6",
+    domain: ".share-reader-socket-4bifvghjoq-an.a.run.app"
   ]
 
   socket "/socket", SocketWeb.UserSocket,

@@ -1,0 +1,6 @@
+env: flex
+runtime: custom
+runtime_config:
+  release_app: share-reader-socket
+service: share-reader-socket
+
